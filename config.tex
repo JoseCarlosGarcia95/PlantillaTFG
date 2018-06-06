@@ -1,0 +1,15 @@
+\newcounter{teorema}[section]\setcounter{teorema}{0}
+
+\newenvironment{teorema}[1][]{
+	
+	\ifstrempty{#1}%
+	{
+		\begin{cajabonita}{teorema}{Teorema}{black!20}{white}
+	}
+	{
+		\begin{cajabonita}{teorema}{Teorema}{black!20}{white}{#1}
+	}
+}
+{
+	\end{cajabonita}
+}
