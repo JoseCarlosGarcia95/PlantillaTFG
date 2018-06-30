@@ -113,7 +113,7 @@
 			{\huge\textsc{\textbf{\@university}}\vspace*{4mm}\par}
 			{\large\textsc{\@degree}\vspace*{4mm}\par}
 			{\includegraphics[width=3.5cm]{\@logo}}
-			{\vspace*{2mm}\par\huge\@title\vspace*{4mm}\par} 
+			{\vspace*{2mm}\par\huge\textsc{\@title}\vspace*{4mm}\par} 
 			{\rule{\textwidth}{.01cm}}
 			{\vspace*{1mm}\par\textsc{\@type}\vspace*{1mm}\par}
 			{\textsc{\@subdate}\vspace*{2mm}\par}
@@ -136,7 +136,7 @@
 			{\huge\textsc{\textbf{\@university}}\vspace*{4mm}\par}
 			{\large\textsc{\@degree}\vspace*{4mm}\par}
 			{\includegraphics[width=3.5cm]{\@logo}}
-			{\vspace*{2mm}\par\huge\@title\vspace*{4mm}\par} 
+			{\vspace*{2mm}\par\huge\textsc{\@title}\vspace*{4mm}\par} 
 			{\rule{\textwidth}{.01cm}}
 			{\vspace*{1mm}\par\textsc{\@type}\vspace*{1mm}\par}
 			{\textsc{\@subdate}\vspace*{2mm}\par}
@@ -159,15 +159,15 @@
 					\begin{center}
 						\begin{minipage}[b]{0.33333\textwidth}
 							\raggedright
-							\@signaturecandidate
+							\textsc{\@signaturecandidate}
 						\end{minipage}%
 						\begin{minipage}[b]{0.33333\textwidth}
 							\centering
-							\@signatureadvisor
+							\textsc{\@signatureadvisor}
 						\end{minipage}%
 						\begin{minipage}[b]{0.33333\textwidth}
 							\raggedleft
-							\@signatureadvisortwo
+							\textsc{\@signatureadvisortwo}
 						\end{minipage}
 					\end{center} 
 				\fi
