@@ -1,15 +1,22 @@
-\newcounter{teorema}[section]\setcounter{teorema}{0}
+% Información
+\title{Resolución}
+\university{Universidad de Cádiz}
+\degree{Grado en Matemáticas}
+\type{Trabajo fin de grado}
+\subdate{Curso académico: 2017/2018}
+\author{Yo}
+\advisor{Primer tutor}
+%\advisortwo{Segundo tutor}
+\city{Jerez de la Frontera, Cádiz}
+\signaturecandidate{Firma del alumno}
+\signatureadvisor{Firma del tutor}
+%\signatureadvisortwo{Firma del tutor}
 
-\newenvironment{teorema}[1][]{
-	
-	\ifstrempty{#1}%
-	{
-		\begin{cajabonita}{teorema}{Teorema}{black!20}{white}
-	}
-	{
-		\begin{cajabonita}{teorema}{Teorema}{black!20}{white}{#1}
-	}
-}
-{
-	\end{cajabonita}
-}
+% Teoremas
+\newtheorem{teorema}{Teorema}
+\newtheorem{definicion}{Definición}
+
+% Fuentes
+\usepackage[math]{kurier}
+\usepackage[sfdefault]{roboto}
+\usepackage[T1]{fontenc}

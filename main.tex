@@ -1,8 +1,7 @@
 \documentclass[twoside,11pt]{PlantillaTFG}
 
-\title{Resolución numérica de ecuaciones diferenciales difusas}
-
 \input{config.tex}
+
 \begin{document}
 	\maketitle
 
@@ -14,18 +13,17 @@
 	
 	\input{parts/resumen.tex}
 	\input{parts/dedicatoria.tex}
+	
 	\tableofcontents
 	
 	\mainmatter
 
 	\pagestyle{fancy}
 	\chapter{Demo}
+	Aquí un ejemplo de cita \cite{miprimerabiblio}
 	\lipsum[1-10]
 	
-	\chapter{Demo}
-	\lipsum[1-10]
+	\bibliographystyle{ieeetr}
+	\bibliography{biblio}
 	
-	\begin{teorema}{}
-		Hola
-	\end{teorema}
 \end{document}
