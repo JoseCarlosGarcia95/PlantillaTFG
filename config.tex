@@ -14,9 +14,52 @@
 
 % Teoremas
 \newtheorem{teorema}{Teorema}
+\newtheorem{proposicion}{Proposición}
 \newtheorem{definicion}{Definición}
+\newtheorem{observacion}{Observación}
+\newtheorem{ejemplo}{Ejemplo}
 
 % Fuentes
 \usepackage[math]{kurier}
-\usepackage[sfdefault]{roboto}
+\usepackage[sfdefault,condensed]{roboto}
 \usepackage[T1]{fontenc}
+
+% Macros
+\def\IR{\ensuremath{\mathbb R}}
+\def\IK{\ensuremath{\mathbb K}}
+\def\IC{\ensuremath{\mathbb C}}
+\def\IN{\ensuremath{\mathbb N}}
+\def\IZ{\ensuremath{\mathbb Z}}
+\def\IQ{\ensuremath{\mathbb Q}}
+\def\IU{\ensuremath{\mathbb U}}
+\def\FUZZYM{\ensuremath{\mu_\mathcal{A}}}
+\def\HDIFF{\ensuremath{\circleddash_H}}
+% Titulos
+\rhead{}
+
+% Hacer enlaces clickables.
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=blue,
+	filecolor=magenta,
+	urlcolor=cyan
+}
+
+% Notación
+\usepackage{tabulary}
+\usepackage{booktabs}
+\usepackage{mathtools}  
+
+% Copyright
+\usepackage{fix-cm}
+\makeatletter
+\DeclareRobustCommand{\regmark}{\raisebox{1.13ex}{%
+		\fontsize{.6\dimexpr\f@size pt}\z@\selectfont\textregistered}%
+}
+\makeatother
+
+% Código
+\usepackage{listings}
+\usepackage{booktabs}

@@ -1,0 +1,329 @@
+\chapter{Conjuntos difusos}
+El contenido de este capítulo se basa en las definiciones que podemos encontrar en la referencia \cite{fuzzyintro}
+
+\section{Subconjuntos difusos}
+La teoría clásica de conjuntos sólo abarca la posibilidad de que un elemento pertenezca o no, a un conjunto. Pero la realidad no es así, y pueden existir ciertos casos en lo que la \textbf{pertenencia} o no, a un conjunto haya que definirlo mediante un \textbf{grado de pertenencia.}
+
+\subsection{Subconjuntos difusos}
+En primer lugar, introduciremos el concepto de conjunto difusos que nos servirá para formalizar el concepto de conjuntos con grados de pertenencia.
+
+\begin{definicion}[Subconjunto difuso]
+	\label{def:subconjunto_difuso}
+	Un \textbf{subconjunto difuso} $A$ es un par ordenado $(\mu_A, \mathbb{U})$ con:
+	\[
+		\mu_A : \mathbb{U} \longrightarrow [0,1]
+	\]
+	Denominamos $\mu_A$ \textbf{función de pertenencia.}
+\end{definicion}
+Tenemos que notar que esta función de pertenencia no define necesariamente una probabilidad, y no hace referencia por ejemplo a la probabilidad de que una persona sea alta o baja, si no que nos da una medida de cuanto de alta o baja es.\\
+
+Por tanto, es natural definir la igualdad de conjuntos de la siguiente forma:
+
+\begin{definicion}[Igualdad de conjuntos difusos]
+	\label{def:igualdad}
+	Decimos que dos conjuntos difusos $A$ y $B$ en $\mathbb{U}$ son iguales si para todo $x \in \mathbb{U}$, se cumple $\mu_A(x) = \mu_B(x)$
+\end{definicion}
+
+Si se que cumpliese que $\mu_A(\mathbb{U})=\{0, 1\}$ \textbf{tendríamos que $A$ es un conjunto clásico}, y llamamos a $\mu_A$ función característica de $A$. En este caso, tenemos que si $x \in A$, entonces $\mu_A(x)=1$, y por el contrario si $x \notin A$ entonces, $\mu_A(x)=0$
+
+Por tanto, \textbf{la función $\mu_A$ representa una generalización del concepto de función característica clásica} dónde $\mu_A$ representa el grado de pertenencia a un conjunto.
+
+\subsection{$\alpha$-corte}
+Ahora introducimos un concepto fundamental en la teoría de conjuntos difusos, y es el concepto de $\alpha$-corte, que nos permitirá crear particiones de los conjuntos separados por los valores de la función de pertenencia.
+\begin{definicion}[$\alpha$-corte]
+	\label{def:alpha_corte}
+	Dado un conjunto difuso $A$, los $\alpha$-corte son los subconjuntos clásicos dados por:
+	\[
+		[A]_\alpha = \left\{
+			\begin{array}{ccc}
+			\{x \in \mathbb{U} : \mu_A(x) \geq \alpha \} & si & \alpha \in (0, 1] \\
+			cl\{x \in \mathbb{U} : \mu_A(x) > 0\} & si & \alpha=0
+			\end{array}
+		\right.
+	\]
+	Además, se define:
+	\[
+		soporte ~ A = \{x \in \mathbb{U} : \mu_A(x) > 0 \}
+	\]
+	\[
+		nucleo ~ A = \{x \in \mathbb{U} : \mu_A(x) = 1 \}
+	\]
+\end{definicion}
+De esta definición, se puede extraer que un conjunto difuso también puede estar definido por sus $\alpha$-corte, de manera que \textbf{dos conjuntos difusos $A$ y $B$ son iguales, si todos sus $\alpha$-corte son iguales.} 
+
+Dado unos $\alpha$-corte podemos construir una función de pertenencia de la siguiente forma: \cite{apuntesfuzzy}
+
+\[
+	\mu_A = \max{\{\alpha A_\alpha(x) : \alpha \in [0, 1]}\}
+\]
+\[
+	A_\alpha(x) = \left\{
+		\begin{array}{ccc}
+			1 & si & x \in [A]_\alpha \\
+			0 & si & x \notin [A]_\alpha
+		\end{array}
+	\right.
+\]
+
+Desde aquí, centraremos nuestro estudio en los $\alpha$-corte de los conjuntos difusos.
+
+\section{Números difusos}
+Para poder trabajar con sistemas de ecuaciones diferenciales difusos, es interesante introducir el concepto de números difusos, que podrían ser valores iniciales de nuestro sistema, o números que aparecen directamente en nuestro sistema de ecuaciones diferenciales. \\
+Necesitamos en primer lugar dos definiciones antes de definir el concepto de número difuso.
+
+\begin{definicion}[Conjunto difuso normal]
+	\label{def:difuso_normal}
+	Un conjunto difuso $A$ decimos que es normal si $nucleo ~ A \neq \emptyset$
+\end{definicion}
+
+\begin{definicion}[Conjunto difuso convexo]
+	\label{def:difuso_convexo}
+	Dado un conjunto difuso $A$ decimos que es convexo si su función de pertenencia es cuasicóncava, esto es:
+	\[
+		\mu_A(\lambda x + (1-\lambda)y) \geq \min{\{\mu_A(x), \mu_A(y)\}}, \lambda \in [0, 1], x, y \in \mathbb{U}
+	\]
+\end{definicion}
+
+En este caso, si $\mathbb{U}=\mathbb{R}$ tendríamos que si $A$ es un conjunto difuso convexo, entonces los $\alpha$-corte son intervalos.
+
+Finalmente, introducimos el concepto de número difuso:
+
+\begin{definicion}[Número difuso]
+	\label{def:numero_difuso}
+	Decimos que $A$ es un número difuso si $\mathbb{U}=\mathbb{R}$, $A$ es normal y convexo, y además su función de pertenencia es continua por la derecha.
+\end{definicion}
+
+
+Observamos que si $x \in \mathbb{R}$ el conjunto $\{x\}$ es un número difuso, con la función de pertenencia.
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.6\textwidth]{numero_difuso}
+%	\caption{Ejemplo de número difuso}
+%	\label{fig:numero_difuso}
+%\end{figure}
+
+\subsection{Caracterización números difusos}
+A continuación, introducimos dos teoremas que nos permitirán caracterizar los números difusos. Las demostraciones de estos dos resultados se pueden encontrar \cite{apuntesfuzzy}.
+
+\begin{teorema}[Teorema de Stacking]
+	Sea $A$ un número difuso, entonces:
+	\begin{enumerate}
+		\item Sus $\alpha$-cortes son intervalos cerrados no vacíos para todo $\alpha \in [0, 1]$
+		\item Si $0 \leq \alpha_1 \leq \alpha_2 \leq 1$ entonces $[A]_{\alpha_1} \subset [A]_{\alpha_2}$
+		\item Para toda sucesión no decreciente de $\alpha_n \in [0, 1]$ tal que $a_n \longrightarrow \alpha$ se tiene que:
+		\[
+			\bigcap^\infty_{n=1} [A]_{\alpha_n} = [A]_\alpha
+		\]
+		\item Para toda sucesión no creciente $\alpha_n \in [0, 1]$ convergente a $0$ se tiene:
+		\[
+			cl\left(
+				\bigcup^\infty_{n=1} [A]_{\alpha_n} = [A]_0
+			\right)
+		\]
+	\end{enumerate}
+\end{teorema}
+
+\begin{teorema}[Teorema de caracterización]
+	Sea $A=\{A_\alpha : \alpha \in [0, 1]\}$ una familia de subconjuntos de $\mathbb{R}$ tal que:
+	
+	\begin{enumerate}
+		\item Sus $\alpha$-cortes son intervalos cerrados no vacíos para todo $\alpha \in [0, 1]$
+		\item Si $0 \leq \alpha_1 \leq \alpha_2 \leq 1$ entonces $[A]_{\alpha_1} \subset [A]_{\alpha_2}$
+		\item Para toda sucesión no decreciente $\alpha_n \in [0, 1]$ tal que $\alpha_n \longrightarrow \alpha$ se tiene que
+		$$
+		\bigcap^\infty_{n=1} [A]_{\alpha_n}=[A]_\alpha
+		$$
+		\item Para toda sucesión no creciente $\alpha_n \in [0, 1]$ convergente a $0$ se tiene:
+		$$
+		cl\left(\bigcup^\infty_{n=1} [A]_{\alpha_n}\right)=[A]_0
+		$$
+	\end{enumerate}
+	Entonces, $A$ es un número difuso.
+\end{teorema}
+
+\section{Principio de extensión de Zadeh}
+Nos gustaría ahora que dado un conjunto difuso, y una función clásica, pudiéramos obtener una función difusa, para esto, tenemos el principio de extensión de Zadeh.
+
+\begin{definicion}[Principio de extensión de Zadeh]
+	Sean $\mathbb{U}$ y $\mathbb{V}$ dos conjuntos de universos, y sea $f: \mathbb{U} \longrightarrow \mathbb{V}$ una función clásica. Definimos el principio de extensión de Zadeh para todo conjunto difuso $A$ en $\mathbb{U}$ con $\mu_A$ su función de pertenencia, de manera que $\hat{f}(A)$ en $\mathbb{V}$ y su función de pertenencia viene dada por:
+	
+	$$
+		\mu_{\hat{f}(A)}=\left\{
+			\begin{array}{ccc}
+				\sup_{x\in f^{-1}(y)} \mu_A(x) & si & f^{-1}(y)\neq\emptyset\\
+				0 & si & f^{-1}=\emptyset
+			\end{array}
+		\right.
+	$$
+\end{definicion}
+
+
+Notemos, que si la función es inyectiva, la función de pertenencia se simplificaría:
+$$
+	\mu_{\hat{f}(A)}=\left\{
+		\begin{array}{ccc}
+			\mu_A(f^{-1}(y)) & si & f^{-1}(y)\neq\emptyset\\
+			0 & si & f^{-1}=\emptyset
+		\end{array}
+	\right.
+$$
+En el apéndice, se pueden encontrar ejemplos de funciones de pertenencias dadas por el principio de extensión de Zadeh.
+
+\subsection{Teoremas de continuidad}
+Sería ideal que no importase el orden el que obtenemos los $\alpha$-corte de la imagen de una función mediante el principio de extensión de Zadeh, y esto lo asegura el siguiente teorema.
+
+\begin{teorema}
+	Sea $f : \mathbb{R}^n \longrightarrow \mathbb{R}^m$ una función.
+	\begin{enumerate}
+		\item Si $f$ es sobreyectiva, entonces $[\hat{f}(A)]_\alpha = f([A]_\alpha)$ si y sólo si $\sup\{\mu_A(x) : x \in f^{-1}(y)\}$ para todo $y \in \mathbb{R}^m$
+		\item Si $f$ es continua, entonces $\hat{f} : \mathcal{F}_\mathcal{H}(\mathbb{R}^n) \longrightarrow \mathcal{F}_\mathcal{H}(\mathbb{R}^n)$ está bien definido, y además,  
+		$$[\hat{f}(A)]_\alpha = f([A]_\alpha)$$
+		para todo $\alpha \in [0, 1]$
+	\end{enumerate}
+\end{teorema}
+
+La primera implicación es clara por la definición de principio de extensión de Zadeh, para la segunda implicación veamos un caso más general:
+
+
+\begin{teorema}
+	Sean $\mathbb{U}$ y $\mathbb{V}$ unos espacios de Haussdorf, y sea $f: \mathbb{U} \longrightarrow \mathbb{V}$ una función. Si $f$ es continua, entonces  $\hat{f} : \mathcal{F}_\mathcal{H}(\IR^n) \longrightarrow \mathcal{F}_\mathcal{H}(\IR^n)$ está bien definida y $$[\hat{f}(A)]_\alpha = f([A]_\alpha)$$
+	para todo $\alpha \in [0, 1]$
+\end{teorema}
+
+\begin{proof}
+	Por la definición del principio de Zadeh, tenemos que $\hat{f}(A)$ es un subconjunto difuso de $\mathbb{V}$. \\
+	Para probar que $\hat{f} : \mathcal{F}_\mathcal{H}(\IR^n) \longrightarrow \mathcal{F}_\mathcal{H}(\IR^n)$ hay que ver que todos los $\alpha-corte$ $[\hat{f}(A)]_\alpha$ son no vacíos, compactos en $\mathbb{V}$. \\
+	Dado que $f$ es continua por hipótesis, la imagen de compactos, son compactos, por tanto, sólo debemos probar $[\hat{f}(A)]_\alpha = f([A]_\alpha)$. \\
+	Probémoslo por doble inclusión.
+	
+	\begin{itemize}
+		\item $[\hat{f}(A)]_\alpha \subset f([A]_\alpha)$. Sea $\mathcal{A} \in \mathcal{F}_\mathcal{H}(\IU)$ y $y \in f([A]_\alpha)$. Por tanto, existe al menos un $x \in [A]_\alpha$ tal que $f(x)=y$. Por el principio de extensión de Zadeh, tenemos $\mu_{\hat{f}(A)}(y)=\sup_{x\in f^{-1}(y)} \mu_A(x) \geq \alpha$. De donde, $y \in [\hat{f}(\mathcal{A})_\alpha]$
+		\item Por otro lado, veamos que $[\hat{f}(A)]_\alpha \supset f([A]_\alpha)$. Dado que $\mathbb{V}$ y $\mathbb{U}$ son espacios de Haussdorf, un punto $y \in \mathbb{V}$ es cerrado. Y además, dado que $f$ es continua, $f^{-1}(y)$ es cerrado. Dado que $[A]_0$ es compacto, ya que es la clausura, la intersección de compactos también es compactos, por tanto $f^{-1}(y) \cap [A]_0$ es compacto. Para $\alpha>0$, consideramos $y \in [\hat{f}(A)]_\alpha$. Entonces $\mu_{\hat{f}(A)}(y)=\sup_{x\in f^{-1}(y)} \mu_A(x) \geq \alpha>0$, y además, existe un $x\in f^{-1}(y)$ tal que $f^{-1}(y) \cap [A]_0 \neq \emptyset$
+	\end{itemize}
+	Finalmente, debido a que $\mu_A(x)$ es continúa por la derecha, y $f^{-1}(y) \cap [A]_0$ es compacto, existe un $x \in f^{-1}(y) \cap [A]_0$ con $\mu_{\hat{f}(\mathcal{A})}(y)=\mu_{\mathcal{A}}(x) \geq \alpha$. Esto es porque $y=f(x)$ para algún $x \in [A]_\alpha$.
+	
+	Para $\alpha=0$, obtenemos:
+	
+	$$
+	\bigcup_{\alpha \in (0, 1]} [\hat{f}(\mathcal{A})]_\alpha = \bigcup_{\alpha \in (0, 1]} f([\mathcal{A}]_\alpha) \subset f([\mathcal{A}]_0).
+	$$
+	
+	Dado que $f([\mathcal{A}]_0)$ es cerrado:
+	
+	$$
+	[\hat{f}(\mathcal{A})]_0 = cl\left( \bigcup_{\alpha \in (0, 1]} [\hat{f}(\mathcal{A})]_\alpha  \right) = cl\left(\bigcup_{\alpha \in (0, 1]} f([\mathcal{A}]_\alpha) \right)	\subset f([\mathcal{A}]_0).
+	$$
+	
+	Y por la doble inclusión anterior, tenemos que $[\hat{f}(\mathcal{A})]_\alpha \subset f([\mathcal{A}]_\alpha)$ para todo $\alpha \in [0, 1]$
+\end{proof}
+
+\section{Aritmética difusa}
+El siguiente paso \textbf{para poder construir métodos numéricos es necesario definir las operaciones aritméticas básicas} entre conjuntos difusos.\\
+La definiciones de \textbf{estas operaciones son bastante naturales}, pero pueden ocasionarnos algunos problemas en ciertos escenarios.\\
+Debido a la equivalencia entre trabajar con conjuntos difusos, y sus $\alpha-corte$, daremos todas las operaciones en términos de $\alpha-cortes$.\\
+En primer lugar, \textbf{recordemos la definición habitual de aritmética en teoría de conjuntos clásicos.}
+
+\subsection{Aritmética en conjuntos clásicos}
+Sean $A, B$ dos conjuntos entonces:
+\begin{itemize}
+	\item $A+B=\{a+b : a \in A, b\in B\}$
+	\item $A - B =\{a - b : a \in A, b\in B\}$
+	\item $A * B =\{ab : a \in A, b\in B\}$
+	\item $A / B =\{a/b : a \in A, b\in B\}$
+\end{itemize}
+
+Recordados los conceptos básicos de aritmética en conjuntos clásicos, pasamos a generalizarlo para conjuntos difusos.
+
+\subsection{Aritmética en conjuntos difusos}
+Sean $\mu_A, \mu_B$ dos funciones de pertenencia y sea $\odot \in \{+, -, \cdot, \div\}$ se define la función de pertenencia de la operación aritmética como:
+$$
+\mu_{A \odot B}(x) = \sup_{a \odot b = c} \min\{\mu_A(a), \mu_B(b)\}
+$$
+Y dado que \textbf{las operaciones aritméticas son funciones continuas}, es equivalente trabajar con los $\alpha-corte$, \textbf{aplicando el principio de extensión de Zadeh tenemos:}
+
+Sean $A$ y $B$ dos números difusos con $\alpha-corte$ dados por $[A]_\alpha=[a_\alpha^-, a_\alpha^+]$ y $[B]_\alpha=[b_\alpha^-, b_\alpha^+]$, podemos definir entonces las operaciones aritméticas como:
+
+$$
+[A+B]_\alpha = [a_\alpha^- + b_\alpha^-, a_\alpha^+ + b_\alpha^+]
+$$
+
+$$
+[A-B]_\alpha = [a_\alpha^- - a_\alpha^+, a_\alpha^+ - b_\alpha^-]
+$$
+
+$$
+[A \cdot B]_\alpha = \left[ \min_{s, r \in \{-, +\}} a_\alpha^s \cdot b_\alpha^r, \max_{s, r \in \{-, +\}} a_\alpha^s \cdot b_\alpha^r\right]
+$$
+
+$$
+[A \div B]_\alpha = \left[ \min_{s, r \in \{-, +\}} \frac{a_\alpha^s}{b_\alpha^r}, \max_{s, r \in \{-, +\}} \frac{a_\alpha^s}{b_\alpha^r}\right]
+$$
+
+\subsubsection{Problemas al definir estas operaciones aritméticas}
+Nuestro objetivo final es \textbf{definir la diferencial de una función}, para funciones escalares de una sola variable podemos definir la diferencial como:
+$$
+\lim\limits_{h\rightarrow 0^+} \frac{f(x+h) - f(x)}{h}
+$$
+Consideremos ahora una función $f(x)=A\in \mathcal{F}_\mathcal{H}(\IU)$, donde $A$ es un número difuso constante. \\
+$$f(x+h) - f(x)=[A-A]$$
+Sean $[A]_\alpha$ los $\alpha-cortes$ de $A$ entonces:
+$$
+[A-A]_\alpha = [a_\alpha^- - a_\alpha^+, a_\alpha^+ - a_\alpha^-]
+$$
+Si $A\neq 0$ tenemos que $[A-A]_\alpha \neq 0$, por tanto al dividir por $h \longrightarrow 0$, tenemos una indeterminación, de donde, tal y \textbf{como hemos definido las operaciones aritméticas para los conjuntos difusos no tendríamos definidas las derivadas de funciones constantes}, y esto, es un problema. \\
+Necesitamos definir \textbf{un nuevo concepto de diferencia}, que para ello, \textbf{utilizaremos la diferencia de Hukuhara.}
+
+\subsection{Hukuhara y diferencia generalizada}
+Debido al problema especificado en la sección anterior, \textbf{necesitamos definir una operación resta que cumpla que $A-A=\{0\}$}, Hukuhara dio una definición de resta que cumplía esta propiedad.
+
+\begin{definicion}
+	Dados dos números difusos $A, B \in \mathcal{F}_\mathcal{C}\IR$ la \textbf{diferencia de Hukuhara (H-Diferencia)} se define como $A \circleddash_H B = C$ donde $C$ es el número difuso que cumple $A=B+C$, si existe.
+\end{definicion}
+
+\begin{observacion}
+	Sean $A, B, C \in \mathcal{F}_\mathcal{C}\IR$ consideremos sus $\alpha - cortes$, por tanto $[A]_\alpha = [a^-_\alpha, a^+_\alpha]$, $[B]_\alpha = [b^-_\alpha, b^+_\alpha]$ y $[C]_\alpha = [c^-_\alpha, c^+_\alpha]$. \\
+	De donde,
+	$$
+	[a^-_\alpha, a^+_\alpha] = [b^-_\alpha + c^-_\alpha, b^+_\alpha + c^+_\alpha]
+	$$
+	Por tanto, 
+	$$
+	[A \circleddash_H B]_\alpha = [a_\alpha^- - b_\alpha^-, a_\alpha^+ - b_\alpha^+]
+	$$
+\end{observacion}
+Con esta observación es fácil ver que la H-Diferencia cumple que $A-A=\{0\}$
+
+\section{Métrica en conjuntos difusos}
+En esta sección vamos a generalizar la definición de espacio métrico a conjuntos difusos, y vamos a dar algunos resultados importantes. Todas las demostraciones de esta sección pueden encontrarse en \cite{apuntesfuzzy}. \\
+En primer lugar, nos acercaremos al concepto de métrica:
+
+\begin{definicion}[Pseudométrica]
+	Sean $A$ y $B$ dos subconjuntos de un espacio métrico $\IU$ compactos. Entonces definimos la pseudométrica como:
+	\[
+		\rho(A, B) = \sup\limits_{a \in A} d(a, B)
+	\]
+	Donde:
+	\[
+		d(a, B) = \inf\limits_{b \in B} ||a-b||
+	\]
+	es la separación de Haussdorf
+\end{definicion}
+
+\begin{definicion}[Métrica de Pompeiu-Hausdorff]
+	\label{def:metricadifusa}
+	Sean $A$ y $B$ dos conjuntos difusos en $\IU$, un espacio métrico. La métrica de Pompeiu-Hausdorff, denotada por $d_\infty$ se define:
+	\[
+		d_\infty(A, B) = \sup\limits_{\alpha \in [0, 1]} \max\{\rho([A]_\alpha, [B]_\alpha), \rho([B]_\alpha,  [A]_\alpha)\}
+	\]
+	
+	Si $A$ y $B$ fueran números difusos, tendríamos:
+	\[
+		d_\infty(A, B) = \sup\limits_{\alpha \in [0, 1]} \max\{|a_\alpha^- - b_\alpha^-|, |a_\alpha^+ - b_\alpha^+|\}
+	\]
+\end{definicion}
+
+\begin{teorema}[\cite{banachfuzzy}]
+	\label{teorema:banach}
+	El espacio de los números difusos, con la métrica $d_\infty$ es un espacio de Banach.
+\end{teorema}

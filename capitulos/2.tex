@@ -1,0 +1,19 @@
+\chapter{Ecuaciones diferenciales difusas}
+En el capítulo anterior \textbf{hemos introducido todas las herramientas necesarias} para introducir el concepto de ecuación diferencial difusa.
+
+En este capitulo introduciremos los conceptos necesarios para plantear y resolver ecuaciones diferenciales difusas de forma analítica y numérica.
+
+También motivaremos al lector con ejemplos y modelos que utilizan ecuaciones diferenciales difusas.
+
+\section{Definición de ecuación diferencial difusas y su solución}
+No existe consenso aún sobre la definición correcta de lo que es una ecuación diferencial difusa, y es por ello que existen muchas definiciones para ese mismo concepto. Podemos encontrar estas discusiones en las distintas bibliografías que hace referencia \cite{fuzzyeqn}.
+
+\subsection{Definiciones equivalentes}
+Consideramos en primer lugar la ecuación diferencial ordinaria que damos por:
+
+\[
+	\frac{d\hat{u}}{dt} (t) = \lim\limits_{\Delta t \rightarrow 0} \frac{\hat{u}(t + \Delta t) - \hat{u}(t)}{\Delta t}
+\]
+Donde $t \in [0, +\infty)$ representa la variable temporal, donde $\hat{u} : [0, \infty) \longrightarrow \mathcal{F}(\mathbb{R})$ es la función difusa dependiente del tiempo. Y la función $\hat{f} : [0, \infty) \times \mathcal{F}(\mathbb{R}) \rightarrow \mathcal{F}(\mathbb{R})$.
+
+Y aplicamos el principio de extensión de Zadeh para poder calcular $\hat{u}(t + \Delta t) - \hat{u}(t)$, se hace claro que es necesario conocer la función de pertenencia $\mu_{\hat{u}(t+\Delta t), \hat{u}(t)}$

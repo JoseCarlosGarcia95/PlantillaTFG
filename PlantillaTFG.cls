@@ -105,6 +105,12 @@
 
 \usepackage{datetime}
 
+\usepackage[
+	type={CC},
+	modifier={by-sa},
+	version={3.0},
+]{doclicense}
+
 \renewenvironment{maketitle}{
 	\pagestyle{empty}
 	
@@ -127,6 +133,12 @@
 						\large{\@advisor} \hfil \large{\@advisortwo}
 					\fi
 				\end{center}
+			}
+			{
+			\vspace*{5cm}\par			
+			\rule{\textwidth}{.01cm}
+				\doclicenseThis
+			\rule{\textwidth}{.01cm}
 			}
 		\end{center}
 	\end{alwayssingle}
@@ -203,3 +215,5 @@
 
 % Teoremas, Definiciones, Lemas, Corolarios...
 \usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
